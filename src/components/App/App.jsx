@@ -1,4 +1,4 @@
-import React, { Components } from 'react';
+import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 
 import { Container, Title, Text } from './App.styled';
@@ -7,7 +7,7 @@ import ContactList from 'components/Contacts/ContactList';
 import Filter from 'components/Filter';
 
 
-class App extends Components {
+class App extends Component {
 
   state = {
     contacts: [

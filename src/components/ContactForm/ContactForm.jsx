@@ -1,11 +1,11 @@
-import React, { Components } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Form, ErrorMessage } from 'formik';
 import {
     Button, Input, Label
 } from './ContactForm.styled';
 
-class ContactForm extends Components {
+class ContactForm extends Component {
 
     state = {
         name: '',
