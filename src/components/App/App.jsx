@@ -10,14 +10,14 @@ import Filter from 'components/Filter';
 class App extends Components {
 
   state = {
-  contacts: [
-    {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-    {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-    {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-    {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-  ],
-  filter: '',
-}
+    contacts: [
+      {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
+      {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
+      {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
+      {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
+    ],
+    filter: '',
+  }
 
   handleSubmit = data => {
     const sameName = this.state.contacts.find(item => item.name.toLowerCase() === data.name.toLowerCase());
@@ -27,18 +27,18 @@ class App extends Components {
     this.setState( prev => ({ contacts: [data, ...prev.contacts] }));
   };
   
-  changeFilter = e => {
+  onChangeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
 
-  getVisibleContacts = () => {
+  getContacts = () => {
     const { filter, contacts } = this.state;
     const lowerFilter = filter.toLowerCase();
 
     return contacts.filter(item => item.name.toLowerCase().includes(lowerFilter));
   };
 
-  deleteContacts = id => {
+  onDeleteContacts = id => {
     this.setState(prevState => ({ contacts: prevState.contacts.filter(item => item.id !== id), }))
   };
   
@@ -51,10 +51,12 @@ class App extends Components {
         <ContactForm onSubmit={this.handleSubmit} />
         <Title>Contacts</Title>
         <Text>Find contact</Text>
-        <Filter value={filter} onChange={this.changeFilter} />
+        <Filter value={filter} onChange={this.onChangeFilter} />
         {contacts.length ?
           (
-            <ContactList contacts={this.getVisibleContacts()} onDelete={this.deleteContacts} />
+            <ContactList
+              contacts={this.getContacts()}
+              onDelete={this.onDeleteContacts} />
           ) : (
         <Text>You havn't contacts yet</Text>
         )}
